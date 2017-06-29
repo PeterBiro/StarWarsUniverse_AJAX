@@ -16,7 +16,12 @@
                 </h1>
             </heading>
             <div class="row">
-                
+                {% if prev_page != None %}
+                    <input type="button" class="btn-primary" value="Previous" data-page="{{prev_page}}">
+                {% endif %} 
+                {% if next_page != None %}
+                    <input type="button" class="btn-success" value="Next" data-page="{{next_page}}">
+                {% endif %}
             </div>
             <div class="row">
                 <table>
