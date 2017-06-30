@@ -34,7 +34,17 @@
                     {% for planet in planets%}
                         <tr>
                             {% for key in planet_keys %}
-                                <td> {{ planet[key[1]] if key[1] != "residents" else planet[key[1]]|length }}</td>
+                                <td>
+                                    {% if key[1] != "residents"%}
+                                        {{ planet[key[1]] }}
+                                    {% else %}
+                                        {% if planet[key[1]]|length == 0 %}
+                                            No known residents
+                                        {% else %}
+                                            <input type='button' class='btn resident-btn' value='{{planet[key[1]]|length}} Resident(s)' data-planet-url='{{planet["url"]}}'>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
                             {% endfor %}
                             <td>vote buttony</td>
                         </tr>
