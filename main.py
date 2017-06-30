@@ -18,7 +18,7 @@ def index():
     if next_page is not None:
         next_page = next_page[34:]
     planet_keys = [
-        ("Name","name"),
+        ("Name", "name"),
         ("Diameter", "diameter"),
         ("Climate", "climate"),
         ("Terrain", "terrain"),
