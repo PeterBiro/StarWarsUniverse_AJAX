@@ -43,7 +43,7 @@
                                         {% if planet[key[1]]|length == 0 %}
                                             No known residents
                                         {% else %}
-                                            <input type='button' class='btn resident-btn' value='{{planet[key[1]]|length}} Resident(s)' data-residents-url='{{planet["residents"]}}' data-toggle="modal" data-target="#residents-modal">
+                                            <input type='button' class='btn resident-btn' value='{{planet[key[1]]|length}} Resident(s)' data-residents-url='{{planet["residents"]}}' data-modal-title='Residents of {{planet["name"]}}' data-toggle="modal" data-target="#residents-modal">
                                         {% endif %}
                                     {% endif %}
                                 </td>

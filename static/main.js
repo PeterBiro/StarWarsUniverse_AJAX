@@ -11,10 +11,9 @@ function loadAnotherPage(){
 }
 
 function showResidents(){
+    var modalTitle = this.dataset.modalTitle;
+    document.getElementById("residents-title").innerHTML = modalTitle;
     var headerKeys = ["name", "height", "mass", "skin_color", "hair_color", "eye_color", "birth_year", "gender"];
-
-    // making of residents(and their datas) list
-
     var residentsUrlList = this.dataset.residentsUrl;
     residentsUrlList = residentsUrlList.replace("]", "").replace("[", "").replace(/'/g, "").split(",");
     document.getElementById("tbody").innerHTML = ""; 
@@ -34,15 +33,12 @@ function showResidents(){
                     } else {
                         cell.innerHTML = responseJSON[headerKeys[n]];
                     }
-
-                }
-                
+                }            
             }
         };
         xhttp.open("GET", residentsUrlList[i], true);
         xhttp.send();
     }
-
 }
 
 
