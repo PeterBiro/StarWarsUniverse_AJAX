@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, session
 import requests
 
 app = Flask(__name__)
@@ -28,6 +28,13 @@ def index():
     ]
     return render_template("index.html", planets=planets, prev_page=prev_page, next_page=next_page, planet_keys=planet_keys)
 
+
+@app.route("/register/")
+def register():
+    return render_template("registration.html")
+
+
+app.secret_key = "Egy ocska kalapocska benne csacska macska mocska."
 
 if __name__ == '__main__':
     app.run(debug=True)

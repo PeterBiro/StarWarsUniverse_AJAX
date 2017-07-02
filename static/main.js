@@ -41,6 +41,33 @@ function showResidents(){
     }
 }
 
+function registerUser() {
+    var userName = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+    if (userName === "") {
+        alert("Welcome Terence Hill! Or should we call you Nobody?")
+    }
+    if (password !== password2) {
+        alert("The passwords are not the same.")
+    }
+}
+
+function initNavbar() {
+    var userName = sessionStorage.getItem("user");
+    if (userName === null) {
+        document.getElementById("nav-registration").style.display = "block";
+        document.getElementById("nav-login").style.display = "block";
+        document.getElementById("nav-logout").style.display = "none";
+        document.getElementById("nav-user").style.display = "none";
+    } else {
+        document.getElementById("nav-registration").style.display = "none";
+        document.getElementById("nav-login").style.display = "none";
+        document.getElementById("nav-logout").style.display = "block";
+        document.getElementById("nav-user").style.display = "block";
+
+    }
+}
 
 var list = document.getElementsByClassName("page-btn");
 for(let i = 0; i < list.length; i++) {
@@ -50,3 +77,10 @@ var resBtnList = document.getElementsByClassName("resident-btn");
 for(let i = 0; i < resBtnList.length; i++) {
     resBtnList[i].addEventListener("click", showResidents);
 }
+
+var regSendBtn = document.getElementById("reg-send")
+if (regSendBtn !== null){
+    regSendBtn.addEventListener("click", registerUser);
+}
+
+// initNavbar();

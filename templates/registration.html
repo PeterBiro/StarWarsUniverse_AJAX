@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Star Wars Universe Planets</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+        <script src="{{url_for('static', filename='main.js')}}" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Registration</a></li>
+                    <li><a href="#">Voting statistics</a></li>
+                    <li class="login-toggle"><a href="/register/">Registration</a></li>
+                    <li class="login-toggle"><a href="#">Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="login-toggle"><a href="#">Logout</a></li>
+                    <li class="login-toggle"><a href="#">user: Csingacsguk</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <form>
+                <label for="username">User name:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <label for="password2"> Password again:</label>
+                <input type="password" id="password2" name="password2" required>
+                <br>
+                <input type="submit" class="btn" id="reg-send">
+                <input type="button" class="btn" value="Back" id="back">
+            </form>
+            
+        </div>
+    </body>
+</html>
