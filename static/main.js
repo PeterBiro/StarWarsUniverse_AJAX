@@ -41,15 +41,54 @@ function showResidents(){
     }
 }
 
+
+function checkUserName(userName) {
+    var checkUrl ="/checkuser";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", checkUrl, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {             
+            var checkResponse = this.response;
+            if (checkResponse === "OK"){
+                return true;
+            } else {
+                return false;
+            }                   
+        }
+    };
+    xhttp.send("username="+userName);
+}
+
+function sendNewUser(userName, password) {
+    var url ="/reguser";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {             
+            window.location.href = "/";                  
+        }
+    };
+    xhttp.send("username=" + userName + "&password=" + password);
+}
+
 function registerUser() {
     var userName = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var password2 = document.getElementById("password2").value;
     if (userName === "") {
-        alert("Welcome Terence Hill! Or should we call you Nobody?")
+        alert("Welcome Terence Hill! Or should we call you Nobody?");
     }
     if (password !== password2) {
-        alert("The passwords are not the same.")
+        alert("The passwords are not the same.");
+    }
+    if (checkUserName(userName)){
+        sendNewUser(userName, password);
+    } else {
+        alert("Hmmm, somebody already registered this username. Pick another one. One of my favourite is s8529hel.")
     }
 }
 

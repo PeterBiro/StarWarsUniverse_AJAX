@@ -1,7 +1,20 @@
 from flask import Flask, render_template, request, url_for, session
 import requests
+import data_manager
 
 app = Flask(__name__)
+
+
+@app.route("/checkuser", methods=["POST"])
+def check_user():
+    username = request.form["username"]
+    return username
+
+
+@app.route("/reguser", methods=["POST"])
+def register_user():
+    username = request.form["username"]
+    password = request.form["password"]
 
 
 @app.route("/")
