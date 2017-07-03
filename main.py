@@ -8,13 +8,15 @@ app = Flask(__name__)
 @app.route("/checkuser", methods=["POST"])
 def check_user():
     username = request.form["username"]
-    return username
+    return data_manager.check_user(username)
 
 
 @app.route("/reguser", methods=["POST"])
 def register_user():
     username = request.form["username"]
     password = request.form["password"]
+    data_manager.new_user(username, password)
+    return "Done"
 
 
 @app.route("/")

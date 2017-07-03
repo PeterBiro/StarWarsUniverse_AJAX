@@ -42,7 +42,7 @@ function showResidents(){
 }
 
 
-function checkUserName(userName) {
+function checkUserName(userName, password) {
     var checkUrl ="/checkuser";
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", checkUrl, true);
@@ -52,9 +52,9 @@ function checkUserName(userName) {
         if (this.readyState == 4 && this.status == 200) {             
             var checkResponse = this.response;
             if (checkResponse === "OK"){
-                return true;
+                sendNewUser(userName, password);
             } else {
-                return false;
+                alert("Hmmm, somebody already registered this username. Pick another one. One of my favourite is s8529hel.");
             }                   
         }
     };
@@ -66,7 +66,6 @@ function sendNewUser(userName, password) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {             
             window.location.href = "/";                  
@@ -85,11 +84,7 @@ function registerUser() {
     if (password !== password2) {
         alert("The passwords are not the same.");
     }
-    if (checkUserName(userName)){
-        sendNewUser(userName, password);
-    } else {
-        alert("Hmmm, somebody already registered this username. Pick another one. One of my favourite is s8529hel.")
-    }
+   checkUserName(userName, password);
 }
 
 function initNavbar() {
