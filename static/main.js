@@ -28,8 +28,12 @@ function showResidents(){
                 for (var n = 0; n < headerKeys.length; n++) {
                     cell = row.insertCell();
                     if(headerKeys[n] == "height"){
-                        var height = parseInt(responseJSON[headerKeys[n]]);
-                        cell.innerHTML = (height/100).toString(); 
+                        var height = responseJSON[headerKeys[n]];
+                        if (height === "unknown"){
+                            cell.innerHTML = height;
+                        } else {
+                            cell.innerHTML = (parseInt(height)/100).toString();
+                        }
                     } else {
                         cell.innerHTML = responseJSON[headerKeys[n]];
                     }

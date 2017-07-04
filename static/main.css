@@ -1,1 +1,8 @@
-table, td, th {border: 1px solid gray;}
+td, th {border: 1px solid gray;
+        text-align: center;
+        padding: 2px;
+        }
+
+table { border: 1px solid gray;
+        
+}

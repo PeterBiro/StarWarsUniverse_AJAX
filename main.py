@@ -72,11 +72,19 @@ def logout():
 
 @app.route("/register/")
 def register():
-    return render_template("registration.html")
+    if "username" in session:
+        user = session["username"]
+    else:
+        user = "guest"
+    return render_template("registration.html", user=user)
 
 @app.route("/login/")
 def login():
-    return render_template("login.html")
+    if "username" in session:
+        user = session["username"]
+    else:
+        user = "guest"
+    return render_template("login.html", user=user)
 
 
 app.secret_key = "Egy ocska kalapocska benne csacska macska mocska."
