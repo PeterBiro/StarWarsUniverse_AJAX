@@ -1,9 +1,15 @@
-from flask import Flask, render_template, request, url_for, session
+from flask import Flask, render_template, request, url_for, session, redirect
 import requests
 import data_manager
 
 app = Flask(__name__)
 
+@app.route("/sessionuser", methods=["POST"])
+def session_user():
+    if "username" in session:
+        return session["username"]
+    else:
+        return ""
 
 @app.route("/checkuser", methods=["POST"])
 def check_user():
@@ -17,6 +23,18 @@ def register_user():
     password = request.form["password"]
     data_manager.new_user(username, password)
     return "Done"
+
+
+@app.route("/loguser", methods=["POST"])
+def login_user():
+    username = request.form["username"]
+    password = request.form["password"]
+    result = data_manager.login_user(username)
+    if (result is not None) and (password == result):
+        session["username"] = username
+        return "OK"
+    else:
+        return ":("
 
 
 @app.route("/")
@@ -41,12 +59,24 @@ def index():
         ("Population", "population"),
         ("Residents", "residents")
     ]
-    return render_template("index.html", planets=planets, prev_page=prev_page, next_page=next_page, planet_keys=planet_keys)
+    if "username" in session:
+        user = session["username"]
+    else:
+        user = "guest"
+    return render_template("index.html", planets=planets, prev_page=prev_page, next_page=next_page, planet_keys=planet_keys, user=user)
 
+@app.route("/logout/")
+def logout():
+    session.pop("username")
+    return redirect("/", code=302)
 
 @app.route("/register/")
 def register():
     return render_template("registration.html")
+
+@app.route("/login/")
+def login():
+    return render_template("login.html")
 
 
 app.secret_key = "Egy ocska kalapocska benne csacska macska mocska."

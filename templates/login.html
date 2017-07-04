@@ -14,30 +14,26 @@
         <div class="container">
             <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Registration</a></li>
+                    <li class="active"><a href="#">Planet list</a></li>
                     <li><a href="#">Voting statistics</a></li>
-                    <li class="login-toggle"><a href="/register/">Registration</a></li>
-                    <li class="login-toggle"><a href="#">Login</a></li>
+                    <li class="login-toggle" id="nav-registration"><a href="/register/">Registration</a></li>
+                    <li class="login-toggle" id="nav-login"><a href="/login/">Login</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="login-toggle"><a href="#">Logout</a></li>
-                    <li class="login-toggle"><a href="#">user: Csingacsguk</a></li>
+                    <li class="login-toggle" id="nav-logout"><a href="#">Logout</a></li>
+                    <li class="login-toggle" id="nav-user"><a href="#">user: Csingacsguk</a></li>
                 </ul>
             </nav>
         </div>
         <div class="container">
-                <label for="username">User name:</label>
-                <input type="text" id="username" name="username" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <br>
-                <label for="password2"> Password again:</label>
-                <input type="password" id="password2" name="password2" required>
-                <br>
-                <input type="button" class="btn" value="Register" id="reg-send">
-                <input type="button" class="btn" value="Back" id="back">
-            
+            <label for="username">User name:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="button" class="btn" value="Login" id="login">
+            <input type="button" class="btn" value="Back" id="back">
         </div>
     </body>
 </html>

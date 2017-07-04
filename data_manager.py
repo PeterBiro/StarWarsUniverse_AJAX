@@ -41,5 +41,28 @@ def new_user(username, passw):
             connection.close()
 
 
+def login_user(username):
+    try:
+        host, dbname, user, password = connection_constants()
+        connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
+        connection = psycopg2.connect(connect_str)
+        cursor = connection.cursor()
+        connection.autocommit = True
+        cursor = connection.cursor()
+        query = "SELECT password FROM users WHERE username=%s;"
+        cursor.execute(query, (username,))
+        result = cursor.fetchone()
+        print(result)
+        print(result[0])
+        if result is not None:
+            result = result[0]
+    except psycopg2.DatabaseError as exception:
+        print(exception)
+        result = None
+    finally:
+        if connection:
+            connection.close()
+    return result
+
 if __name__ == '__main__':
     pass

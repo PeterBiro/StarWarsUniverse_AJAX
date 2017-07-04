@@ -87,20 +87,51 @@ function registerUser() {
    checkUserName(userName, password);
 }
 
-function initNavbar() {
-    var userName = sessionStorage.getItem("user");
-    if (userName === null) {
-        document.getElementById("nav-registration").style.display = "block";
-        document.getElementById("nav-login").style.display = "block";
-        document.getElementById("nav-logout").style.display = "none";
-        document.getElementById("nav-user").style.display = "none";
-    } else {
-        document.getElementById("nav-registration").style.display = "none";
-        document.getElementById("nav-login").style.display = "none";
-        document.getElementById("nav-logout").style.display = "block";
-        document.getElementById("nav-user").style.display = "block";
+function loginUser() {
+    var userName = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var url ="/loguser";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(this.response === "OK") {
+                window.location.href = "/";
+            } else {
+                alert("username & password doesn't match");
+            }           
+                              
+        }
+    };
+    xhttp.send("username=" + userName + "&password=" + password);
 
-    }
+}
+
+function initNavbar() {
+    var url ="/sessionuser";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {             
+            var userName = this.response;
+            if (userName === "") {
+                document.getElementById("nav-registration").style.display = "block";
+                document.getElementById("nav-login").style.display = "block";
+                document.getElementById("nav-logout").style.display = "none";
+                document.getElementById("nav-user").style.display = "none";
+            } else {
+                document.getElementById("nav-registration").style.display = "none";
+                document.getElementById("nav-login").style.display = "none";
+                document.getElementById("nav-logout").style.display = "block";
+                document.getElementById("nav-user").style.display = "block";
+            }
+        }
+    };
+    xhttp.send();
+    var userName = sessionStorage.getItem("user");
+    
 }
 
 var list = document.getElementsByClassName("page-btn");
@@ -117,4 +148,9 @@ if (regSendBtn !== null){
     regSendBtn.addEventListener("click", registerUser);
 }
 
-// initNavbar();
+var loginBtn = document.getElementById("login")
+if (loginBtn !== null){
+    loginBtn.addEventListener("click", loginUser);
+}
+
+initNavbar();
