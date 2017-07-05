@@ -4,9 +4,20 @@ import psycopg2
 
 def check_user(user_name):
     try:
-        host, dbname, user, password = connection_constants()
-        connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
-        connection = psycopg2.connect(connect_str)
+        # host, dbname, user, password = connection_constants()
+        # connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
+	# connection = psycopg2.connect(connect_str)
+	
+	urllib.parse.uses_netloc.append('postgres')
+	url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+	connection = psycopg2.connect(
+    		database=url.path[1:],
+    		user=url.username,
+    		password=url.password,
+    		host=url.hostname,
+    		port=url.port
+	)
+
         cursor = connection.cursor()
         connection.autocommit = True
         cursor = connection.cursor()
@@ -26,9 +37,20 @@ def check_user(user_name):
 
 def new_user(username, passw):
     try:
-        host, dbname, user, password = connection_constants()
-        connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
-        connection = psycopg2.connect(connect_str)
+        # host, dbname, user, password = connection_constants()
+        # connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
+	# connection = psycopg2.connect(connect_str)
+	
+	urllib.parse.uses_netloc.append('postgres')
+	url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+	connection = psycopg2.connect(
+    		database=url.path[1:],
+    		user=url.username,
+    		password=url.password,
+    		host=url.hostname,
+    		port=url.port
+	)
+
         cursor = connection.cursor()
         connection.autocommit = True
         cursor = connection.cursor()
@@ -43,9 +65,20 @@ def new_user(username, passw):
 
 def login_user(username):
     try:
-        host, dbname, user, password = connection_constants()
-        connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
-        connection = psycopg2.connect(connect_str)
+        # host, dbname, user, password = connection_constants()
+        # connect_str = "dbname='{}' user='{}' host='{}' password='{}'".format(dbname, user, host, password)
+	# connection = psycopg2.connect(connect_str)
+	
+	urllib.parse.uses_netloc.append('postgres')
+	url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+	connection = psycopg2.connect(
+    		database=url.path[1:],
+    		user=url.username,
+    		password=url.password,
+    		host=url.hostname,
+    		port=url.port
+	)
+
         cursor = connection.cursor()
         connection.autocommit = True
         cursor = connection.cursor()
