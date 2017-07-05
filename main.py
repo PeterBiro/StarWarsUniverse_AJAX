@@ -89,7 +89,8 @@ def login():
     return render_template("login.html", user=user)
 
 
-app.secret_key = "Egy ocska kalapocska benne csacska macska mocska."
+app.secret_key = "T9T9R76M7NAEI3574HNBPY46C219E7GEXL2O7BWGOX5QFJVWISB33ZUBR8R6XE8Y0EIBSZAOI1IW9LR2"
+
 
 if __name__ == '__main__':
     app.run(debug=True)

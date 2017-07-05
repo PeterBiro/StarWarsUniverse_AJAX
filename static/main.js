@@ -19,6 +19,7 @@ function showResidents(){
     document.getElementById("tbody").innerHTML = ""; 
     for(let i =0; i < residentsUrlList.length; i++) {
         var xhttp = new XMLHttpRequest();
+        xhttp.setRequestHeader('X-Test', i)
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {             
                 var tbody = document.getElementById("tbody");
