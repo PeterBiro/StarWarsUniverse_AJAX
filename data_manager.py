@@ -52,8 +52,6 @@ def login_user(username):
         query = "SELECT password FROM users WHERE username=%s;"
         cursor.execute(query, (username,))
         result = cursor.fetchone()
-        print(result)
-        print(result[0])
         if result is not None:
             result = result[0]
     except psycopg2.DatabaseError as exception:

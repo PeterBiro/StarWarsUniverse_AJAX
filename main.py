@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, url_for, session, redirect
+from werkzeug.security import generate_password_hash, check_password_hash
+
 import requests
 import data_manager
 
@@ -21,7 +23,7 @@ def check_user():
 def register_user():
     username = request.form["username"]
     password = request.form["password"]
-    data_manager.new_user(username, password)
+    data_manager.new_user(username, generate_password_hash(password))
     return "Done"
 
 
@@ -30,7 +32,7 @@ def login_user():
     username = request.form["username"]
     password = request.form["password"]
     result = data_manager.login_user(username)
-    if (result is not None) and (password == result):
+    if (result is not None) and (check_password_hash(result, password)):
         session["username"] = username
         return "OK"
     else:
