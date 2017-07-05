@@ -44,7 +44,7 @@ def index():
     page = request.args.get("page")
     if page is None:
         page = "1"
-    response = requests.get("http://swapi.co/api/planets/?page={}".format(page))
+    response = requests.get("https://swapi.co/api/planets/?page={}".format(page))
     planets = response.json()["results"]
     prev_page = response.json()["previous"]
     next_page = response.json()["next"]
