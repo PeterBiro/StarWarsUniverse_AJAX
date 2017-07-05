@@ -1,5 +1,5 @@
 import psycopg2
-from private_settings import connection_constants
+# from private_settings import connection_constants
 
 
 def check_user(user_name):
