@@ -15,7 +15,7 @@ function showResidents(){
     document.getElementById("residents-title").innerHTML = modalTitle;
     var headerKeys = ["name", "height", "mass", "skin_color", "hair_color", "eye_color", "birth_year", "gender"];
     var residentsUrlList = this.dataset.residentsUrl;
-    residentsUrlList = residentsUrlList.replace("]", "").replace("[", "").replace("http", "https").replace(/'/g, "").split(",");
+    residentsUrlList = residentsUrlList.replace("]", "").replace("[", "").replace(/http/g, "https").replace(/'/g, "").split(",");
     document.getElementById("tbody").innerHTML = ""; 
     for(let i =0; i < residentsUrlList.length; i++) {
         var xhttp = new XMLHttpRequest();
